@@ -1,128 +1,175 @@
-//syntax to store data  in js : Declaration Variable = Data;
+//Syntax to Store Data: Declaration variable = data ;
 
-// Data types in java script are divided in to two different categories.
-// Primitive Data types (immutable data types)
-// Non-Primitive Data types( mutable data types)
+//Data types in JavaScript are divided into two different categories. 
+//1. Primitive Data Types (immutable data types)
+//2. Non-Primitive Data Types (mutable data types)
 
-
-// immutable
-
-let a=10;
-a+10;
+//immutable 
+let a = 10;//storing number
+a + 10;//adding 10
 console.log(a);
 
 //mutable
-let obj= {
-"name":"bharath",
-"id":1234
-}
-obj.name="sarath"
-console.log(obj);
-
-//mutable
-let b= [1,2,3];
+let b = [1, 2, 3];//storing array
 b.push(4);
 console.log(b);
 
-//******************************************************/
-//************** Primitive Data types *******************/
-//******************************************************/
 
-//1. number ==> the datatype  that can help us to store numbers  with decimals or without decimals
+/********************************************/
+/*********Primitive Data Types**************/
+/*******************************************/
 
+//1.number ==> The data type that can help us to store numbers with decimals or without decimals
 let num1 = 10;
 let num2 = 10.55;
 console.log(num1);
 console.log(typeof num2);
-console.log(typeof num1);
+console.log(typeof num2);
 
-//2. String ==> the datatype  that can help us to store text value . we can use single or double quotes or backticks.
-
-let str1= "He told me, 'good morning'."
-let str2= 'I replied back with, "good morning".'
+//2.string ==> The data type that can help us to store text values. We can use single or double quotes or backticks.
+let str1 = "He told me, 'Good morning.'";
+let str2 = 'I replied back with "Good afternoon." ';
 console.log(str1);
 console.log(typeof str1);
 console.log(str2);
 console.log(typeof str2);
 
+let empName = "Viji";
+let location = "TN";
+console.log("New Employee Name is " + empName + " and Location is " + location);
+console.log(`New Employee Name is ${empName} and Location is ${location}`);
 
-let empName = "Jyoti";
-let location= "UP";
-console.log("New employee name is "+empName+ " and location is" +location);
-console.log('New employee name is empName and location is location');
-console.log(`New employee name is ${empName} and location is ${location}`);
-
-// boolean=> the datatype that can help us to store the result of a condition in the form of true or false.
-
+//boolean => The data type that can help us to store the result of a condition in the form of true or false 
 let x = 10;
 let y = 20;
-let result = x>y;
+let result = x > y;
 console.log(result);
 console.log(typeof result);
 
-// Undefined => Undefined represents a variable  that has been declared but not assigned any value;
+//undefined => Undefined represents a variable that has been declared but not assigned any value. 
 let age;
 console.log(age);
 
-// null  =>null  represents a variable  that has been declared but intensionally assigned any empty value ;
-
-let salary = 10000;
+//null => Null represents a variable that has been declared and intentionally assigned an empty value. 
+let salary = 100000;
 salary = null;
 console.log(salary);
 
-//symbol =>
+//symbol =>  Symbol represents a unique hidden identifier inside an object.
+let countryOfOrigin = Symbol();
+let productInfo = {
+    productName: "IPhone 16",
+    price: 100000,
+    [countryOfOrigin] : "China"
+}
+console.log(productInfo);
 
+/***********************************************/
+/*********Non-Primitive Data Types**************/
+/***********************************************/
 
-//******************************************************/
-//************** Non-Primitive Data types *******************/
-//******************************************************/
-
-//1. object => object  Data types represents a collection of key value pairs.
-
-let person ={
-    name:"jyoti",
-    age:26,
-    visaStatus:true,
-    addrees: {
-       city: "delhi",
-       state: "delhi",
-       zip: 110074
+//1.object => Object data type represents a collection of key-value pairs. 
+let person = {
+    name: "bharath",
+    age: 36,
+    visaStatus: true,
+    address: {
+        city: "hyd",
+        state: "TS",
+        zip: 500081
     }
 }
 
-console.log(person.name);
-console.log(person["name"]);
+//Print the name of the person. 
+console.log(person.name);//method 1
+console.log(person["name"]);//method 2
 
+//Print the city of the person. 
+console.log(person.address.city);//method 1
+console.log(person.address["city"]);//method 2
 
-console.log(person.addrees.city);
-console.log(person.addrees["city"]);
-
+//Print the complete person details. 
 console.log(person);
 
-
-//2. array => array represents a list of value.
-
-let fruits = ["apple","banana", "orange", "mango"];
-let prices=[300,80,200, 220];
-let fruitsAndPrices= ["apple",300,"banana",80,"orange", 200, "mango",220];
+//Array => Array represents a list of values. 
+let fruits = ["apple", "banana", "orange", "mango"];
+let prices = [300, 80, 200, 220];
+let fruitsAndPrices = ["apple",300, "banana",80, "orange",200, "mango",220];
 
 //print mango from fruits
 console.log(fruits[3]);
-//print mango from fruitsAndPrices
+
+//print price of banana from fruitsAndPrices
 console.log(fruitsAndPrices[3]);
 
 
-
-//2. funtion => A funtion represents a block of code or colle collection of statementto complete a perticular task.
-
-function getAccountBalance(){
+//function => A function represents a block of code or collection of statements to complete a particular task. 
+// Test Case 3: verify the account statement
+console.log("******************TEST CASE 3: VERIFY THE ACCOUNT STATEMENT******************");
+launchBrowserAndLogin("firefox", "https://uat.icici.com/");
 console.log("Verify the home page is displayed");
-let accountBalance =100000;
-return accountBalance;
+console.log("Navigate to the account statement page");
+console.log("Verify the account statement is displayed with the following details:");
+logoutAndCloseBrowser();
+
+function launchBrowserAndLogin(browser_name, url) {
+    console.log(`Launch the ${browser_name} Browser`);
+    console.log(`Enter the URL: ${url}`);
+    console.log("Enter the username as 'Bharath' and password as 'Bharath@123'");
+    console.log("Click on the login button");
 }
 
-//3. set => set represent a collection of unique  value of any data type
+function logoutAndCloseBrowser() {
+    console.log("Logout from the application");
+    console.log("Close the browser");
+}
 
+function getAccountBalance() {
+    console.log("Navigate to the account balance page");
+    let accountBalance = 100000;
+    return accountBalance;
+}
 
+// Set => A set represents a collection of unique values of any data type. 
+let empIds = new Set(); //creating the empty set will store the data. 
+empIds.add(121);
+empIds.add(122);
+empIds.add(123);
+empIds.add(123);
+empIds.add(124);
 
+console.log(empIds);
 
+//Map => A map can store multiple values in the form of key-value. When it comes to a map, it is going to allow duplicate values but won't allow duplicate keys. 
+let empMap = new Map();
+empMap.set("empId", 121);
+empMap.set("empName", "Bharath");
+empMap.set("empAge", 36);
+empMap.set("empId", 122);//duplicate key
+empMap.set("empLuckyNumber", 36);//duplicate value
+console.log(empMap);
+
+//Date => The date data type represents a specific point in time.
+let currentDate = new Date();
+console.log(currentDate);
+
+//get current year
+console.log(currentDate.getFullYear());
+
+//get current month
+console.log(currentDate.getMonth() + 1); // month starts from 0 to 11
+
+//get current date
+console.log(currentDate.getDate());
+
+//get current day
+console.log(currentDate.getDay()); // day starts from 0 to 6 (0-Sunday, 1-Monday, 2-Tuesday, 3-Wednesday, 4-Thursday, 5-Friday, 6-Saturday)
+
+//get current hours
+console.log(currentDate.getHours());
+
+//get current minutes
+console.log(currentDate.getMinutes());
+
+//get current seconds
+console.log(currentDate.getSeconds());

@@ -67,10 +67,122 @@ function calcHike(emp: Employee): number {
     return (hikeAmount / emp.baseSalary) * 100;
 }
 
-console.asse
 
-// There are 5 Employee records. Now Calculate the Hike percentage of each Employee and store the
-// Values in Map with EmployeeName and HikePercentagevalue and Print them.
 
-// Hike = ( Base Salary * variable pay % ) + Bonus + Reward ;
-// Hike % = Hike / Base Salary .
+//---*************Solution Assignment 4********************__--
+
+    // Array of transactions: positive values represent credits, negative values represent debits
+        const transactions: number[] = [50000, -2000, 3000, -15000, -200, -300, 4000, -3000];
+
+        // Variables to store the count and amount of credits and debits
+        let totalCredits: number = 0;
+        let totalDebits: number = 0;
+        let totalCreditAmount: number = 0;
+        let totalDebitAmount: number = 0;
+        let suspiciousTransactions: number = 0;
+
+        // Iterate through each transaction in the array
+        for (const amount of transactions) {
+
+            if (amount > 0) {
+                // Credit transaction
+                totalCredits++;
+                totalCreditAmount += amount;
+
+                // Check for suspiciously large credit transaction
+                if (amount > 10000) {
+                    console.log(`Suspicious credit transaction with Amount: ${amount}`);
+                    suspiciousTransactions++;
+                }
+
+            } else {
+                // Debit transaction
+                totalDebits++;
+                totalDebitAmount -= amount; // convert to positive
+
+                // Check for suspiciously large debit transaction
+                if (amount < -10000) {
+                    console.log(`Suspicious debit transaction with Amount: ${amount}`);
+                    suspiciousTransactions++;
+                }
+            }
+        }
+
+        // Final balance
+        const finalBalance: number = totalCreditAmount - totalDebitAmount;
+
+        // Print summary
+        console.log("----- Transaction Summary -----");
+        console.log("Total number of credit transactions:", totalCredits);
+        console.log("Total number of debit transactions:", totalDebits);
+        console.log("Total amount credited:", totalCreditAmount);
+        console.log("Total amount debited:", totalDebitAmount);
+        console.log("Final remaining amount in the account:", finalBalance);
+        console.log("Total number of suspicious transactions:", suspiciousTransactions);
+
+        export {};
+
+
+        //----------------------Solution-Assignment5---------------------
+
+        // Map<employeeName, [baseSalary, experience, rating]>
+
+//Storing employee data (input)
+const empData: Map<string, number[]> = new Map();
+empData.set("Alice Johnson", [75000, 5, 4.2]);
+empData.set("Bob Smith", [68000, 3, 3.8]);
+empData.set("Carol Davis", [82000, 7, 4.5]);
+empData.set("David Brown", [90000, 10, 2.0]);
+empData.set("Eva Green", [60000, 2, 3.5]);
+
+
+//Create empty Map to store hike percentages
+const hikeMap: Map<string, number> = new Map();
+
+// Calculate hike for each employee and store in hikeMap
+for (const key of empData.keys()) {
+  const data = empData.get(key)!;// get the array of values for the employee
+  const baseSalary = data[0];
+  const experience = data[1];
+  const rating = data[2];
+
+  const hikePercentage = calculateHike(baseSalary, experience, rating);
+  hikeMap.set(key, hikePercentage);
+}
+
+console.log("Hike Percentage for each employee:");
+console.log(hikeMap);
+
+
+// Function to calculate hike percentage
+function calculateHike(
+  baseSalary: number,
+  experience: number,
+  rating: number
+): number {
+  let variablePayPercentage = 0;
+  let bonus = 0;
+  let reward = 0;
+
+  if (rating >= 4) {
+    variablePayPercentage = 15;
+    bonus = 1500;
+  } else if (rating >= 3) {
+    variablePayPercentage = 10;
+    bonus = 1200;
+  } else {
+    variablePayPercentage = 3;
+    bonus = 300;
+  }
+
+  if (experience >= 5) {
+    reward = 5000;
+  }
+
+  const hike =
+    (baseSalary * variablePayPercentage) / 100 + bonus + reward;
+
+  return (hike / baseSalary) * 100;
+}
+
+export {};
