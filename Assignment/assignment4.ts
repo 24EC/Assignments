@@ -17,19 +17,46 @@
 // 4. If any transaction limit exceeds +/- 10000 then print the message “Suspicious credit/ debit
 // Transaction with Amount” and also print total number of suspicious transactions
 
-let TransactionsAmount: number[] = [ 50000, -2000, 3000, -15000, -200, -300, 4000, -3000];
+// Array of transactions: positive values represent credits, negative values represent debits     
+const TransactionsAmount: number[] = [50000, -2000, 3000, -15000, -200, -300, 4000, -3000];
+
+// Variables to store the count and amount of credits and debits   
 let totalCredit = 0;
 let totalDebit = 0;
+let totalCreditAmount: number = 0;
+let totalDebitAmount: number = 0;
+let suspiciousTransactions: number = 0;
 
-for (let amount of TransactionsAmount) {
-        if (amount > 0) {
-            totalCredit += amount;
-        } else if (amount < 0) {
-            totalDebit += Math.abs(amount); // store as positive value
+// Iterate through each transaction in the arra
+for (const amount of TransactionsAmount) {
+    if (amount > 0) {
+
+        totalCredit++;
+        totalCreditAmount += amount;
+
+        if (amount > 10000) {
+            console.log(`Suspicious credit transaction with Amount: ${amount}`);
+            suspiciousTransactions++;
+        }
+
+    } else {
+        totalDebit++;
+        totalDebitAmount -= amount;
+        if (amount < -10000) {
+            console.log(`Suspicious debit transaction with Amount: ${amount}`);
+            suspiciousTransactions++;
         }
     }
-   
-    console.log("Bank Transaction Summary:");
-    console.log(`Total Credit: ₹${totalCredit}`);
-    console.log(`Total Debit: ₹${totalDebit}`);
-   
+}
+// Final balance
+const finalBalance: number = totalCreditAmount - totalDebitAmount;
+
+// Print summary
+console.log("----- Transaction Summary -----");
+console.log("Total number of credit transactions:", totalCredit);
+console.log("Total number of debit transactions:", totalDebit);
+console.log("Total amount credited:", totalCreditAmount);
+console.log("Total amount debited:", totalDebitAmount);
+console.log("Final remaining amount in the account:", finalBalance);
+console.log("Total number of suspicious transactions:", suspiciousTransactions);
+
