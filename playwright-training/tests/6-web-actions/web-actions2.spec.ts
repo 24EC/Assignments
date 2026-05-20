@@ -1,107 +1,101 @@
-// Assignment - 2
-
 import { test, expect } from '@playwright/test';
 
-test('DemoQA Application Test - Complete Workflow', async ({ page }) => {
-  // 1. Launch the DemoQA application
-  await page.goto('https://demoqa.com/automation-practice-form');
-  console.log('1. Launch the DemoQA application');
+test('Demo QA Practice Form Validations ', async ({ page }) => {
 
-  // 2. Wait for Page-load
-  await expect(page.locator('div.practice-form-wrapper')).toBeVisible();
-  console.log('2. Page-loaded');
+    // 1. Enter URL and Launch the application (https://demoqa.com/automation-practice-form)
+    page.goto("https://demoqa.com/automation-practice-form");
 
-  // 3. Enter First name and Last name
-  await page.fill('#firstName', 'First');
-  console.log('3. Enter First name');
-  await page.fill('#lastName', 'Last');
-  console.log('3. Enter Last name');
+    // 2. Wait for Page-load
+    const pageHeader = await page.locator('//h1[text()="Practice Form"]');
+    await expect(pageHeader).toBeVisible();
 
-  // 4. Enter Email
-  await page.fill('#userEmail', 'first.last@example.com');
-  console.log('4. Enter email');
+    // 3. Enter First name and Last name
+    const firstName = await page.locator('input[id="firstName"]');
+    const lastName = await page.locator('input[id="lastName"]');
 
-  // 5. Select Gender (Male)
-  await selectGender(page, 'Male');
-  console.log('5. Gender selected');
+    await firstName.fill("Bharath");
+    await lastName.fill("Reddy");
 
-  // 6. Enter mobile number
-  await page.fill('#userNumber', '9876543210');
-  console.log('6. Enter mobile number');
+    // 4. Enter Email
+    const email = await page.locator('input[id="userEmail"]');
+    email.fill("BharathTechAcademy@gmail.com");
 
-  // 7. Select DOB (1-Feb-1991)
-  const dobInput = page.locator('#dateOfBirthInput');
-  await dobInput.click();
-  await dobInput.fill('01 Feb 1991');
-  await dobInput.press('Enter');
-  console.log('7. DOB selected');
+    // 5. Select Gender (Male)
+    await selectGender(page, "Male");
 
+    // 6. Enter mobile number
+    const mobile = await page.locator('input[id="userNumber"]');
+    await mobile.fill("9553220022");
 
-  // 8. Search and Select Computer Science and English
-  await page.fill('#subjectsInput', 'Computer Science');
-  await page.keyboard.press('Enter');
-  await page.fill('#subjectsInput', 'English');
-  await page.keyboard.press('Enter');
-  console.log('8. Subjects selected');
+    // 7.Select DOB (1-Feb-1991)
+    await selectDOB(page, "1", "February", "1991");
 
-  // 9. Select Hobbies as Sports and Reading
-  await selectHobbies(page, '1');
-  console.log('9. Sports Hobbies selected');
-  await selectHobbies(page, '2');
-  console.log('9. Reading Hobbies selected');
+    // 8.Search and Select Computer Science and English
+    const subjects: string[] = ["Computer Science", "English"];
+    await selectSubject(page, subjects);
 
+    // 9.Select Hobbies as Sports and Reading
+    const hobbies: string[] = ["Sports", "Reading"];
+    await selectHobbies(page, hobbies);
 
-  // 10. Upload photo
-  
-  const fileInput = page.locator('input[id="uploadPicture"]');
-  await fileInput.setInputFiles('C:\\Users\\Jyoti Srivastava\\OneDrive\\Desktop\\Capture.PNG');
-  console.log('10. Photo uploaded');
+    // 10.Upload photo
+    const uploadInput = await page.locator('input[id="uploadPicture"]');
+    const filePath = "files/Bharath.png";
+    await uploadInput.setInputFiles(filePath);
 
-  // 11. Submit Details
-  await page.click('#submit');
-  await expect(page.locator('#example-modal-sizes-title-lg')).toHaveText('Thanks for submitting the form');
-  console.log('11. Form submitted and verified');
+    // 11.Submit Details
+    const submitButton = await page.locator('button[id="submit"]');
+    await submitButton.click();
 
 });
 
-test('DemoQA Alerts Test', async ({ page }) => {
-  await page.goto('https://demoqa.com/alerts');
-  console.log('1. Launch the alerts application');
-
-  let dialogCount = 0;
-  page.on('dialog', async dialog => {
-    dialogCount++;
-    console.log(`Alert ${dialogCount} message:`, dialog.message());
-    if (dialogCount === 1) {
-      await dialog.accept();
-      console.log('3. Information alert accepted');
-    } else if (dialogCount === 2) {
-      await dialog.dismiss();
-      console.log('4. Confirmation alert dismissed');
-    } else if (dialogCount === 3) {
-      await dialog.accept('Test text');
-      console.log('5. Prompt alert accepted with text');
+async function selectHobbies(page: any, hobbies: string[]) {
+    for (const hobby of hobbies) {
+        const hobbyLocator = await page.locator(`//label[text()="${hobby}"]`);
+        await hobbyLocator.click();
     }
-  });
-
-  await page.click('#alertButton');
-  console.log('3. Clicked information alert button');
-
-  await page.click('#confirmButton');
-  console.log('4. Clicked confirmation alert button');
-
-  await page.click('#promtButton');
-  console.log('5. Clicked prompt alert button');
-});
-
-async function selectGender(page: any, mode: string) {
-    const GenderRadioButton = page.locator(`input[type="radio"][value="${mode}"]`);
-    await GenderRadioButton.check();
-    console.log(`5. Selected gender mode: ${mode}`);
 }
 
-async function selectHobbies(page: any, mode1: string) {
-    const HobbiesCheckbox = page.locator(`input[type="checkbox"][value="${mode1}"]`);
-    await HobbiesCheckbox.check();
-    console.log(`9. Selected hobbies: ${mode1}`);
+async function selectGender(page: any, option: string) {
+    const gender = await page.locator(`input[value="${option}"]`);
+    await gender.check();
+}
+
+async function selectDOB(page: any, date: string, month: string, year: string) {
+
+    //Locate the date of birth input field and click on it to open the date picker
+    const dobInput = await page.locator('input[id="dateOfBirthInput"]');
+    await dobInput.click();
+
+    //Select the month from the month dropdown
+    const monthDropdown = await page.locator('select.react-datepicker__month-select');
+    await monthDropdown.selectOption({ label: month });
+
+    //Select the year from the year dropdown
+    const yearDropdown = await page.locator('select.react-datepicker__year-select');
+    await yearDropdown.selectOption({ label: year });
+
+    //Select the date from the date picker
+    const dateLocator = await page.locator(`//div[contains(@aria-label,"${month}") and text()="${date}"]`);
+    await dateLocator.click();
+}
+
+async function selectSubject(page: any, subjects: string[]) {
+
+    //Locate the subject input box and click on it. 
+    const subjectInput = await page.locator('div[class*="subjects-auto-complete__input-container"]');
+    await subjectInput.click();
+
+    //Locate the Subject Input Internal Container. 
+    const subjectInputInternal = await page.locator('input[id="subjectsInput"]');
+
+    //Select the subjects provided in the array. 
+    for (const subject of subjects) {
+
+        //Enter the subject. 
+        await subjectInputInternal.fill(subject);
+
+        //Press Enter to select the subject from the auto-suggested options.
+        await subjectInputInternal.press('Enter');
+    }
 }

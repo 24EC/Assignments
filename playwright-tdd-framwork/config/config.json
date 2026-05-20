@@ -1,0 +1,26 @@
+{
+    "app":{
+        "url": "https://example.com",
+        "username": "admin",
+        "password": "admin123"
+
+    },
+    "api":{
+        "Url": "https://api.example.com"
+        
+    },
+    "db":{
+        "host": "localhost",
+        "port": 5432,
+        "username": "dbuser",
+        "password": "dbpassword",
+        "database": "testdb"
+    },
+    "ollama":{
+        "Url":"https://api.example.com",
+        "model": "ollama/llama-2-7b-chat"
+        
+    }
+}
+
+

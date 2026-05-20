@@ -10,10 +10,22 @@ test('DemoQA Alerts Test', async ({ page }) => {
 
 
     // 2. Locate Alert buttons to trigger the alerts
-    await page.click('#alertButton');
+    const informationAlert = await page.locator('#alertButton');
+    const confirmationAlert = await page.locator('#confirmButton');
+    const promptAlert = await page.locator('#promtButton');
+
+    await informationAlert.click();
     console.log('3. Clicked information alert button');
 
     // 3. Click on the information alert and copy the alert message and then select OK button
+
+    page.once('dialog', async dialog => {
+         console.log('2. Information alert message:', dialog.message());
+         await dialog.accept();
+         console.log('3. Information alert accepted');
+         await page.click('#confirmButton');
+
+    });
 
     // 4. Click on the Confirmation alert, copy the alert message, and select the Cancel button.
     await page.click('#confirmButton');
