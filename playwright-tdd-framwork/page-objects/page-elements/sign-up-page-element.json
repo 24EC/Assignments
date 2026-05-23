@@ -1,0 +1,23 @@
+{
+
+    "signUpPageTitle":"div.from-title",
+    "signUpBusinessEmailInput":"input[aria-label='Business email']",
+    "signUpPasswordInput":"input[aria-label='Password']",
+    "ContinueButton":"//span[text()=' CONTINUE ']",
+    "signUpFirstNameInput":"input[aria-label='First name']",
+    "signUpLastNameInput":"input[aria-label='Last name']",   
+    "CompanyInput":"input[aria-label='Company']",
+    "WebsiteInput":"input[aria-label='Website']",
+    "CountryDropdown":"input[aria-label='Country']",
+    "PhoneInput":"input[aria-label='Phone']",
+    "SignUpButton":"//span[text()=' SIGN UP ']",
+    "linkedInIcon":"img.icon-LinkedIn",
+    "googleIcon":"img.icon-google",
+    "policyContainerLink":"div.policy-container",
+    "haveAnAccountLabel":"div.have-an-account",
+    "loginLink":"//span[text()=' LOG IN ']",
+    "SignUpSuccessMessage": "//label[text()=' Almost done! ']"
+
+
+
+}

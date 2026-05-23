@@ -1,23 +1,24 @@
 {
     "app":{
-        "url": "https://example.com",
-        "username": "admin",
-        "password": "admin123"
+        "url": "https://accounts.creatio.com/login/alm",
+        "title":"Log in | Creatio",
+        "username": "jyoti28112021@gmail.com",
+        "password": "1234568@#Jyoti"
 
     },
     "api":{
-        "Url": "https://api.example.com"
+        "Url": "https:/localhost:3000/api"
         
     },
     "db":{
         "host": "localhost",
         "port": 5432,
-        "username": "dbuser",
-        "password": "dbpassword",
+        "username": "postgres",
+        "password": "postgres",
         "database": "testdb"
     },
     "ollama":{
-        "Url":"https://api.example.com",
+        "Url":"https://localhost:11434",
         "model": "ollama/llama-2-7b-chat"
         
     }

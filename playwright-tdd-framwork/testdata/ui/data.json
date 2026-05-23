@@ -1,0 +1,50 @@
+{
+   "Verify Cookies popup content":{
+    "content":"We may use cookies and similar technologies to collect information about the ways you interact with and use the website"
+   },
+   "Verify cookies popup is getting closed":{
+    "buttonName":"Allow All"
+   },
+   "Verify login with valid credentials":{
+     "buttonName":"Allow All",
+        "username":"jyoit28112021@gmail.com",
+        "password":"12345678@#Jyoti"
+   },
+   "Verify login with invalid credentials":{
+     "buttonName":"Allow All",
+        "username":"jyoit28112021@gmail.com",
+         "password":"12345678@#",
+         "expectedErrorMsg":"Invalid email or password."
+   },
+   "Verify forgot password functionality":{
+         "buttonName":"Allow All",
+        "username":"jyoit28112021@gmail.com"
+   },
+   "Verify adding a new user":{
+     "buttonName":"Allow All",
+        "username":"jyoit28112021@gmail.com",
+        "password":"12345678@#Jyoti",
+        "newUserEmail":"newuser@example.com",
+        "newUserRole":"Developer"
+   },
+   "Verify logout functionality":{
+     "buttonName":"Allow All",
+        "username":"jyoit28112021@gmail.com",
+        "password":"12345678@#Jyoti"
+        
+   },
+
+   "Verify user sign-up functionality":{
+     "buttonName":"Allow All",
+        "username":"Test2811@gmail.com",
+        "password":"12345678@Abc",
+        "firstName":"newuser",
+        "lastName":"Developer",
+        "Company":"Test Company",
+        "Website":"https://testcompany.com",
+        "Country":"India",
+        "phone":"1234567890"
+
+
+   }
+}

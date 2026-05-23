@@ -1,0 +1,28 @@
+{
+    "studioCreatioLogo":"//mat-icon[@svgicon='header-logo']",
+    "loginPageHeader": "span.form-title",
+    "bisunessLabel":"label.crt-input-label-container ng-star-inserted",
+    "businessEmailTextBox":"input[aria-label='Business email']",
+    "forgotPasswordLink":"a.forgot-password-link",
+    "forgotPasswordConfirmationMsg":"//span[text()='Almost done!']",
+    "ForgetPasswordTitle": "//title[text()='Reset password | studio creatio']",
+    "ForgetPasswordSentEmailMsgTop":"div.content-top",
+    "ForgetPasswordSentEmailMsgBottom":"div.content-bottom",
+    "ForgetPasswordClickHereLink":"//a[text()='Click here']",
+    "passwordLabel":"label. crt-password-input-label",
+    "passwordTextBox":"input[aria-label='Password']",
+    "showPasswordIcon":"svg#Component_2433_33",
+    "loginButton":"//span[text()=' LOG IN ']",
+    "orLogininUsingLabel":"label.social-buttons-label",
+    "loginErrorMessage":"//div[contains(text(),'Invalid email or password')]",
+    "linkedInIcon":"img.icon-LinkedIn",
+    "googleIcon":"img.icon-google",
+    "quesforSignUpLabel":"span.login-question",
+    "signUpLink":"//span[text()=' SIGN UP ']",
+    "cookiesBotButton":"div#CookiebotWidget",
+    "onePlateFormLabel":"//span[text()='One Platform']",
+    "freedomLabel":"//span[text()='Freedom']",
+    "genuineCareLabel":"//span[text()='Genuine Care']"
+    
+
+}
